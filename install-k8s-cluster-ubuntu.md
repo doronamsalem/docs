@@ -16,6 +16,9 @@ sudo su -
 ```
 Perform all the commands as root user unless otherwise specified
 ##### Disable Firewall
+##### Disable swap
+##### Update sysctl settings for Kubernetes networking
+##### Install docker engine
 ```
 ufw disable
 swapoff -a; sed -i '/swap/d' /etc/fstab
@@ -34,18 +37,13 @@ sysctl --system
 ```
 ### Kubernetes Setup
 ##### Add Apt repository
+##### Install Kubernetes components
 ```
 {
   curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
   echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" > /etc/apt/sources.list.d/kubernetes.list
 }
 apt update && apt install -y kubeadm=1.18.5-00 kubelet=1.18.5-00 kubectl=1.18.5-00
-{
-  mknod /dev/kmsg c 1 11
-  echo '#!/bin/sh -e' >> /etc/rc.local
-  echo 'mknod /dev/kmsg c 1 11' >> /etc/rc.local
-  chmod +x /etc/rc.local
-}
 ```
 
 ## On kmaster
