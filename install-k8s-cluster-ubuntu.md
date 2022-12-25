@@ -1,4 +1,4 @@
-# Install Kubernetes Cluster using kubeadm
+# Install K8S Cluster Ubuntu 20.04
 Follow this documentation to set up a Kubernetes cluster on __Ubuntu 20.04 LTS__.
 
 This documentation guides you in setting up a cluster with one master node and one worker node.
@@ -18,6 +18,19 @@ Perform all the commands as root user unless otherwise specified
 ##### Disable Firewall
 ```
 ufw disable
+swapoff -a; sed -i '/swap/d' /etc/fstab
+cat >>/etc/sysctl.d/kubernetes.conf<<EOF
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+sysctl --system
+{
+  apt install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+  add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+  apt update
+  apt install -y docker-ce=5:19.03.10~3-0~ubuntu-focal containerd.io
+}
 ```
 ##### Disable swap
 ```
