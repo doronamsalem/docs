@@ -50,7 +50,7 @@ apt update && apt install -y kubeadm=1.18.5-00 kubelet=1.18.5-00 kubectl=1.18.5-
 ##### Initialize Kubernetes Cluster
 Update the below command with the ip address of kmaster
 ```
-kubeadm init --apiserver-advertise-address=172.16.16.100 --pod-network-cidr=192.168.0.0/16  --ignore-preflight-errors=all
+kubeadm init --apiserver-advertise-address=<172.16.16.100> --pod-network-cidr=192.168.0.0/16  --ignore-preflight-errors=all
 ```
 ##### Deploy Calico network
 ```
@@ -71,11 +71,11 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-## On Kworker
+## On worker
 ##### Join the cluster
 Use the output from __kubeadm token create__ command in previous step from the master server and run here.
 
-## Verifying the cluster (On kmaster)
+## (On kmaster) Verifying the cluster 
 ##### Get Nodes status
 ```
 kubectl get nodes
