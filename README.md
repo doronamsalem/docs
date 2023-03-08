@@ -89,7 +89,7 @@ under settings create:
   width="686" height="289">
 </p>
 
-### step 7
+### step 7:
 
 nevigate to application and create new app
 * GENERAL:
