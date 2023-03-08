@@ -14,7 +14,10 @@ Step by step guide for a version deployment.
 
 * deployment performed from linux machine
 
-## Deployment
+## Automaticlly deployment
+run <script.sh>
+
+## Manual deployment
 
 new version tar file  containing the following directories:
 * <dir name>: docker images
@@ -24,12 +27,10 @@ new version tar file  containing the following directories:
 ###step 1
 
 extrec new version tar file
+
 ```
 tar -xf <new_v.tar>
 ```
-<p align="center">
-  
-</p>
 <p align="center">
 <img src="~/Pictures/tar_example.png" alt="Extracted file example"
   width="686" height="289">
@@ -37,60 +38,59 @@ tar -xf <new_v.tar>
    
 ###step 2 
 
+load all images to docker engine
 
-   
-   
-   
-   
-   
-   
-   
-   
-   image of extracted tar file with tree view of all files
-   
-   
-
-
-
-### Executing program
-
-* How to run the program
-* Step-by-step bullets
 ```
-code blocks for commands
+docker load -i <service_image.tar>
+```
+<p align="center">
+<img src="~/Pictures/load_images.png" alt="docker load for all images together"
+  width="686" height="289">
+</p>
+
+###step 3
+
+loaded images need to be tag according to local artifactory url
+
+```
+docker tag <rafael_artifactory>:<rafael_port>/service:tag  <local_artifactory>:<local_port>/service:tag
 ```
 
-## Help
+###step 3
 
-Any advise for common problems or issues.
+push all tages images to artifactory
+
 ```
-command to run if program contains helper info
+docker push <local_artifactory>:<local_port>/service:tag
 ```
 
-## Authors
+###step 4
 
-Contributors names and contact info
+change the following in <flight>/values.yaml according to ...
+* all endpoints
+* ingressDomaine
+* 
 
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
+###step 5
 
-## Version History
+* push to a clean gitlab repo the main dir charts to "main" branch
+* on a differente branch of the same repo push the chart from <flight> dir 
 
-* 0.2
-    * Various bug fixes and optimizations
-    * See [commit change]() or See [release history]()
-* 0.1
-    * Initial Release
+###step 6
 
-## License
+connect to argocd user with the rellevant permitions to the open shift cluster
+under settings create:
 
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
+* repository: connection of argo to gitlab repo 
 
-## Acknowledgments
+<p align="center">
+<img src="~/Pictures/argo-repository.png" alt="argo repository"
+  width="686" height="289">
+</p>
 
-Inspiration, code snippets, etc.
-* [awesome-readme](https://github.com/matiassingers/awesome-readme)
-* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-* [dbader](https://github.com/dbader/readme-template)
-* [zenorocha](https://gist.github.com/zenorocha/4526327)
-* [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
+* project: create app of apps that deploy gitlab repo charts on cluster
+
+<p align="center">
+<img src="~/Pictures/argo-project.png" alt="argo project"
+  width="686" height="289">
+</p>
