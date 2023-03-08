@@ -94,8 +94,8 @@ under settings create:
 nevigate to application and create new app
  GENERAL:
   * SYNC POLICY: Automatic
-  * PRUNE RESOURCES - [x] :heavy_check_mark: Green tick
-  * SELF HEAL - [x] :heavy_check_mark: Green tick
+  * PRUNE RESOURCES - :heavy_check_mark:
+  * SELF HEAL - :heavy_check_mark:
  SOURCE:
   * Revision: flight branch
   * Path: .
