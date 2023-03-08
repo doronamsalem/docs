@@ -31,7 +31,7 @@ extrec new version tar file
 ```
 tar -xf <new_v.tar>
 ```
-<p align="center">
+<p>
 <img src="https://github.com/doronamsalem/docs/blob/main/png/tar_example.png" alt="Extracted file example"
   width="686" height="289">
 </p>
