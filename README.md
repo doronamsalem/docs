@@ -98,7 +98,7 @@ nevigate to application and create new app
   * SELF HEAL :heavy_check_mark:
 * SOURCE:
   * Revision: flight branch
-  * Path: .
+  * Path: ./
 * DESTINATION
   * Cluster URL: https://kubernetes.default.svc
   * Namespace: 
