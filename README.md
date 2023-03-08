@@ -14,13 +14,43 @@ Step by step guide for a version deployment.
 
 * deployment performed from linux machine
 
-### Deployment
+## Deployment
 
-####step 1
-extrec newversion tar file
+new version tar file  containing the following directories:
+* <dir name>: docker images
+* main: services cahrts 
+* flight: chart that contains agrocd controllers per service 
+
+###step 1
+
+extrec new version tar file
 ```
 tar -xf <new_v.tar>
 ```
+<p align="center">
+  
+</p>
+<p align="center">
+<img src="~/Pictures/tar_example.png" alt="Extracted file example"
+  width="686" height="289">
+</p>
+   
+###step 2 
+
+
+   
+   
+   
+   
+   
+   
+   
+   
+   image of extracted tar file with tree view of all files
+   
+   
+
+
 
 ### Executing program
 
