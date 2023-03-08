@@ -1,22 +1,26 @@
-# Project Title
+# FLIGHT RAFAEL
 
-Simple overview of use/purpose.
+Step by step guide for a version deployment.
 
-## Description
+## Prerequests
 
-An in-depth paragraph about your project and overview of use.
+* Gitlab server
+* JFrog Artifactory
+* ArgoCD server 
+* OpenShift
+* Keycloak
 
-## Getting Started
+## Assemption
 
-### Dependencies
+* deployment performed from linux machine
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
+### Deployment
 
-### Installing
-
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+####step 1
+extrec newversion tar file
+```
+tar -xf <new_v.tar>
+```
 
 ### Executing program
 
