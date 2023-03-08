@@ -20,7 +20,7 @@ run <script.sh>
 ## Manual deployment
 
 new version tar file  containing the following directories:
-* /<dir name>: docker images
+* dir name: docker images
 * main: services cahrts 
 * flight: chart that contains agrocd controllers per service 
 
