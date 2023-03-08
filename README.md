@@ -1,4 +1,4 @@
-# FLIGHT RAFAEL
+# FLIGHT RAFAEL ![stronghold logo](https://github.com/doronamsalem/docs/blob/main/png/rafael.jpeg)
 
 Step by step guide for a version deployment.
 
