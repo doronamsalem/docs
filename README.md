@@ -93,7 +93,7 @@ under settings create:
 
 nevigate to application and create new app
 GENERAL:
-  * SYNC POLICY: Automatic
+* SYNC POLICY: Automatic
   * PRUNE RESOURCES :heavy_check_mark:
   * SELF HEAL :heavy_check_mark:
 SOURCE:
