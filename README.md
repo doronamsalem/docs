@@ -43,7 +43,7 @@ load all images to docker engine
 ```
 docker load -i <service_image.tar>
 ```
-<p align="center">
+<p>
 <img src="https://github.com/doronamsalem/docs/blob/main/png/docker_load.png" alt="docker load for all images together"
   width="686" height="289">
 </p>
@@ -76,21 +76,34 @@ change the following in <flight>/values.yaml according to ...
 * push to a clean gitlab repo the main dir charts to "main" branch
 * on a differente branch of the same repo push the chart from <flight> dir 
 
-### step 6
+### step 6:
 
 connect to argocd user with the rellevant permitions to the open shift cluster
 under settings create:
 
-* repository: connection of argo to gitlab repo 
+* project: new argo project 
+* repository: connection of argo to gitlab repo using https
 
 <p align="center">
-<img src="~/Pictures/argo-repository.png" alt="argo repository"
+<img src="https://github.com/doronamsalem/docs/blob/main/png/argo-repository.png" alt="argo repository"
   width="686" height="289">
 </p>
 
-* project: create app of apps that deploy gitlab repo charts on cluster
+### step 7
 
-<p align="center">
-<img src="~/Pictures/argo-project.png" alt="argo project"
+nevigate to application and create new app
+ GENERAL:
+  * SYNC POLICY: Automatic
+  * PRUNE RESOURCES - [x] :heavy_check_mark: Green tick
+  * SELF HEAL - [x] :heavy_check_mark: Green tick
+ SOURCE:
+  * Revision: flight branch
+  * Path: .
+ DESTINATION
+  * Cluster URL: https://kubernetes.default.svc
+  * Namespace: 
+
+<p>
+<img src="https://github.com/doronamsalem/docs/blob/main/png/app_of_apps.png" alt="app of apps"
   width="686" height="289">
 </p>
