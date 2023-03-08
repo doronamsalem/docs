@@ -92,14 +92,14 @@ under settings create:
 ### step 7
 
 nevigate to application and create new app
-GENERAL:
-* SYNC POLICY: Automatic
+* GENERAL:
+  * SYNC POLICY: Automatic
   * PRUNE RESOURCES :heavy_check_mark:
   * SELF HEAL :heavy_check_mark:
-SOURCE:
+* SOURCE:
   * Revision: flight branch
   * Path: .
-DESTINATION
+* DESTINATION
   * Cluster URL: https://kubernetes.default.svc
   * Namespace: 
 
