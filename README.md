@@ -32,7 +32,7 @@ extrec new version tar file
 tar -xf <new_v.tar>
 ```
 <p align="center">
-<img src="~/Pictures/tar_example.png" alt="Extracted file example"
+<img src="https://github.com/doronamsalem/docs/blob/main/png/tar_example.png" alt="Extracted file example"
   width="686" height="289">
 </p>
    
@@ -44,7 +44,7 @@ load all images to docker engine
 docker load -i <service_image.tar>
 ```
 <p align="center">
-<img src="~/Pictures/load_images.png" alt="docker load for all images together"
+<img src="https://github.com/doronamsalem/docs/blob/main/png/docker_load.png" alt="docker load for all images together"
   width="686" height="289">
 </p>
 
