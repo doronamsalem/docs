@@ -1,4 +1,4 @@
-# FLIGHT RAFAEL ![stronghold logo](https://www.google.com/imgres?imgurl=https%3A%2F%2Fyt3.googleusercontent.com%2Fytc%2FAL5GRJWxS5_ptaV_gozpraeHg4TnexR6H7PQTVAXktjtoQ%3Ds900-c-k-c0x00ffffff-no-rj&imgrefurl=https%3A%2F%2Fwww.youtube.com%2Fchannel%2FUC3D8NEM0cZQixoBfUIijHpQ&tbnid=2Q7sXHclVyEUVM&vet=12ahUKEwiY9eXYiM39AhUPlycCHSBzBhQQMygLegUIARCgAQ..i&docid=x_dfoBaKdUH6nM&w=900&h=900&q=rafael%20israel&hl=en&ved=2ahUKEwiY9eXYiM39AhUPlycCHSBzBhQQMygLegUIARCgAQ)
+# FLIGHT RAFAEL ![stronghold logo](https://github.com/doronamsalem/docs/blob/main/png/rafael.jpg)
 
 Step by step guide for a version deployment.
 
