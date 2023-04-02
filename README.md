@@ -2,108 +2,111 @@
 
 Step by step guide for a version deployment.
 
-## Prerequests
+## Prerequisites
 
-* Gitlab server
-* JFrog Artifactory
-* ArgoCD server 
-* OpenShift
-* Keycloak
+* Git repository server
+* ArgoCD server
+* Docker images registry
+* OpenShift cluster
+* Keycloak server
 
-## Assemption
+## Assumption
 
-* deployment performed from linux machine
+* deployment performed from a Linux machine
+* 60 GB free disk space
 
-## Automaticlly deployment
-run <script.sh>
+## Deployment
 
-## Manual deployment
+The application version is delivered as a tar file containing the following:
+* “images” directory - contains all docker images in tar format
+* “main” directory - contains charts of all the application services
+* App-Of-Apps directory (mentioned as “AOA” in the guide)- chart with:
+  * templates: ArgoCD controller for every service
+  * values.yaml: environment variables 
+  * Chart.yaml: chart configuration file 
 
-new version tar file  containing the following directories:
-* dir name: docker images
-* main: services cahrts 
-* flight: chart that contains agrocd controllers per service 
+### Step 1
 
-### step 1
-
-extrec new version tar file
+Extract the tar file
 
 ```
 tar -xf <new_v.tar>
 ```
-<p>
-<img src="https://github.com/doronamsalem/docs/blob/main/png/tar_example.png" alt="Extracted file example"
-  width="686" height="289">
-</p>
-   
-### step 2 
 
-load all images to docker engine
+### Step 2
+
+Load all images from the directory “images” to docker-engine
 
 ```
 docker load -i <service_image.tar>
 ```
-<p>
-<img src="https://github.com/doronamsalem/docs/blob/main/png/docker_load.png" alt="docker load for all images together"
-  width="686" height="289">
-</p>
 
-### step 3
+### Step 3
 
-loaded images need to be tag according to local artifactory url
+All images are tagged according to Rafael’s environment 
+loaded images can be displayed with
 
 ```
-docker tag <rafael_artifactory>:<rafael_port>/service:tag  <local_artifactory>:<local_port>/service:tag
+docker images
 ```
 
-### step 3
-
-push all tages images to artifactory
+retagged all images according to the local docker registry URL
 
 ```
-docker push <local_artifactory>:<local_port>/service:tag
+docker tag <rafael_artifactory>:<rafael_port>/service:tag <local_registry>:<local_port>/service:tag
 ```
 
-### step 4
+### Step 4
 
-change the following in <flight>/values.yaml according to ...
+Push all tagged images to the registry
+
+```
+docker push <local_registry>:<local_port>/service:tag
+```
+
+Step 5
+
+Change the following parameters in AOA/values.yaml file
 * all endpoints
-* ingressDomaine
-* 
+* replicaCount as necessary
+```
+ingressDomain: "<domain>"
+```
 
-### step 5
+### Step 6
 
-* push to a clean gitlab repo the main dir charts to "main" branch
-* on a differente branch of the same repo push the chart from <flight> dir 
+Push to a clean Git repository all the charts from the main directory  to a "main" branch
+to a different branch of the same repository push the chart content from the AOA directory
 
-### step 6:
+### Step 7
 
-connect to argocd user with the rellevant permitions to the open shift cluster
-under settings create:
+Connect the Keycloak admin dashboard 
+* Define client id  to the relevant services
+* Define users
 
-* project: new argo project 
-* repository: connection of argo to gitlab repo using https
+### Step 8
 
-<p align="center">
-<img src="https://github.com/doronamsalem/docs/blob/main/png/argo-repository.png" alt="argo repository"
-  width="686" height="289">
-</p>
+Connect to the ArgoCD user with the relevant permissions to the open shift cluster
+under settings, create:
+* repository: connection of ArgoCD to the Git repository
+* project: new ArgoCD project
+  * SOURCE REPOSITORIES: git repository configured
+  * DESTINATIONS: namespaces where argocd AOA and services applications will deploy (e.g: argo-cd and flight)
 
-### step 7:
+### Step 9
 
-nevigate to application and create new app
+Navigate to the application and create a new app
+
 * GENERAL:
+  * Project: Name: the project that was created in step 8
   * SYNC POLICY: Automatic
   * PRUNE RESOURCES :heavy_check_mark:
   * SELF HEAL :heavy_check_mark:
+   
 * SOURCE:
-  * Revision: flight branch
-  * Path: ./
-* DESTINATION
-  * Cluster URL: https://kubernetes.default.svc
-  * Namespace: 
+  * Revision: the branch that the AOA chart was pushed to
+  * Path  ./
 
-<p>
-<img src="https://github.com/doronamsalem/docs/blob/main/png/app_of_apps.png" alt="app of apps"
-  width="686" height="289">
-</p>
+* DESTINATION
+  * Cluster URL:  in-cluster (ArgoCD will deploy in the same cluster it deployed)
+  * Namespace: the namespace where ArgoCD is deployed in your cluster
