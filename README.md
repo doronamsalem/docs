@@ -64,7 +64,7 @@ Push all tagged images to the registry
 docker push <local_registry>:<local_port>/service:tag
 ```
 
-Step 5
+### Step 5
 
 Change the following parameters in AOA/values.yaml file
 * all endpoints
